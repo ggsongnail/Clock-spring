@@ -8,15 +8,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"classpath*:/clock-servlet.xml","classpath*:/applicationContext.xml"}) 
+@ContextConfiguration(locations = {"classpath*:/applicationContext-test.xml"}) 
 public class HelloControllerTest {
 
 	@Autowired
@@ -31,10 +31,10 @@ public class HelloControllerTest {
     
     @Test
     public void getAccount() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/hello"))  
-        .andExpect(MockMvcResultMatchers.view().name("hello"))  
+        this.mockMvc.perform(get("/hello"))  
+        //.andExpect(view().name("hello"))  
         //.andExpect(MockMvcResultMatchers.model().attributeExists("accounts"))  
-        .andDo(MockMvcResultHandlers.print());
+        .andDo(print());
     }
 
 }
