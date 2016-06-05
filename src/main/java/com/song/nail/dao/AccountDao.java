@@ -31,5 +31,11 @@ public class AccountDao{
 	public void saveAccount(Account account) {
 		em.merge(account);
 	}
+	
+	@Transactional(readOnly = true)
+	public Account getAccountById(int id){
+		return (Account) em.createQuery("select a from Account a where a.id = ?1").setParameter(1, id).getSingleResult();
+	}
+	
 
 }

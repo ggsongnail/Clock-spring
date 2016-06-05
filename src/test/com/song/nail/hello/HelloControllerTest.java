@@ -10,6 +10,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.song.nail.service.AccountService;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
@@ -23,18 +26,27 @@ public class HelloControllerTest {
     private WebApplicationContext wac;
 
     private MockMvc mockMvc;
+    
+    @Autowired
+    private AccountService accountService;
 
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
     
-    @Test
+    //@Test
     public void getAccount() throws Exception {
-        this.mockMvc.perform(get("/hello"))  
-        //.andExpect(view().name("hello"))  
+        this.mockMvc.perform(get("/hello")).andDo(print())  
+        .andExpect(view().name("hello"))  
         //.andExpect(MockMvcResultMatchers.model().attributeExists("accounts"))  
-        .andDo(print());
+        ;
+    }
+    
+    @Test
+    public void testService(){
+    	int a = accountService.getAccountList().size();
+    	System.out.print(a);
     }
 
 }
