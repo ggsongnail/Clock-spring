@@ -1,5 +1,9 @@
 package com.song.nail.hello;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +16,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.song.nail.service.AccountService;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -39,8 +39,8 @@ public class HelloControllerTest {
     public void getAccount() throws Exception {
         this.mockMvc.perform(get("/hello")).andDo(print())  
         .andExpect(view().name("hello"))  
-        //.andExpect(MockMvcResultMatchers.model().attributeExists("accounts"))  
-        ;
+        .andExpect(model().attributeExists("accounts"));  
+        
     }
     
     @Test
