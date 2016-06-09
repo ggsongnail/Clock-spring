@@ -41,6 +41,14 @@ public class HelloWorldController {
 		Account account =  accountService.getAccountById(id);
 		return account;
     }
+	
+	@ResponseBody
+	@RequestMapping(value="/hello/json",method=RequestMethod.GET)
+    public List<Account> helloJson() {
+		List<Account> accounts = accountService.getAccountList();
+		return accounts;
+    }
+	
 	public void setAccountService(AccountService accountService) {
 		this.accountService = accountService;
 	}
