@@ -43,4 +43,10 @@
 		beans -->
 	<context:component-scan base-package="com.song.nail.dao" />
 	<context:component-scan base-package="com.song.nail.service" />
+	
+	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+	    <property name="baseAddress" value="http://localhost:8083/"/>
+	</bean>
+	<bean id="accountServiceEndpoint" class="com.song.nail.webservice.AccountServiceEndpoint"></bean>
+ 	
 </beans>
