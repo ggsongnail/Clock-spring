@@ -23,5 +23,9 @@ public class AccountService{
 	public Account getAccountById(int id){
 		return accountDao.getAccountById(id);
 	}
+	
+	public void saveAccount(Account account){
+		accountDao.saveAccount(account);
+	}
 
 }

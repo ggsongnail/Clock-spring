@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,6 +50,19 @@ public class HelloWorldController {
 		List<Account> accounts = accountService.getAccountList();
 		return accounts;
     }
+	
+	@ResponseBody
+	@RequestMapping(value="/hello/create",method=RequestMethod.POST)
+	public String saveAccount(@ModelAttribute Account account){
+		return null;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/hello/update",method=RequestMethod.POST)
+	public Account updateAccount(@RequestBody Account account){
+		accountService.saveAccount(account);
+		return account;
+	}
 	
 	public void setAccountService(AccountService accountService) {
 		this.accountService = accountService;

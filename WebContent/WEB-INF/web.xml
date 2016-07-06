@@ -12,6 +12,15 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<filter>
+		<filter-name>cors</filter-name>
+		<filter-class>com.song.nail.controller.SimpleCORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>cors</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<welcome-file-list>
     	<welcome-file>index.jsp</welcome-file>
@@ -27,4 +36,15 @@
         <servlet-name>clock</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <servlet> 
+	   <servlet-name>AccountService</servlet-name> 
+	   <servlet-class> 
+	      com.song.nail.webservice.AccountServiceEndpoint
+	   </servlet-class> 
+	</servlet> 
+	   
+	<servlet-mapping> 
+	   <servlet-name>AccountService</servlet-name> 
+	   <url-pattern>/AccountService</url-pattern> 
+	</servlet-mapping> 
 </web-app>
