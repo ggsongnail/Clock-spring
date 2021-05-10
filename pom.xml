@@ -130,6 +130,6 @@
 			</dependency> -->
 	</dependencies>
 	<properties>
-		<org.springframework.version>4.2.5.RELEASE</org.springframework.version>
+		<org.springframework.version>4.3.21.RELEASE</org.springframework.version>
 	</properties>
 </project>
